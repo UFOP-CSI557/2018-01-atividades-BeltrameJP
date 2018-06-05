@@ -5,14 +5,11 @@
  */
 package metodo;
 
-import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Random;
 import problema.Problema;
 import solucao.Individuo;
 import solucao.IndividuoDouble;
 import solucao.PopulacaoDouble;
-import solucao.ResultadosExecucao;
 
 /**
  *
@@ -153,7 +150,7 @@ public class DEReal{
                 IndividuoDouble xr0 = (IndividuoDouble) populacao.getIndividuos().get(r0);
                 IndividuoDouble xr1 = (IndividuoDouble) populacao.getIndividuos().get(r1);
                 IndividuoDouble xr2 = (IndividuoDouble) populacao.getIndividuos().get(r2);
-
+                
                 // Gerar perturbacao - diferenca
                 gerarPerturbacao(trial, xr1, xr2);
                 // Mutacao - r0 + F * perturbacao

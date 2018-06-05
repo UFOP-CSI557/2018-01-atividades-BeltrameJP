@@ -8,6 +8,8 @@ package ecmodel;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import org.apache.commons.math3.stat.inference.TTest;
+
 import metodo.ESReal;
 import problema.Problema;
 import problema.ProblemaRastrigin;
@@ -18,7 +20,7 @@ import solucao.ResultadosExecucao;
  *
  * @author fernando
  */
-public class ESRealMain {
+public class appES {
 
     /**
      * @param args the command line arguments
@@ -27,10 +29,13 @@ public class ESRealMain {
 
         
     	long tempoInicial;
+    	TTest testT = new TTest();
     	
     	ArrayList<ResultadosExecucao> resultadosGaussiana = new ArrayList<ResultadosExecucao>();
+    	double[] resultadosG;
     	ArrayList<ResultadosExecucao> resultadosAritmetico = new ArrayList<ResultadosExecucao>();
-
+    	double[] resultadosA;
+    	
         Double minimo = -5.12;
         Double maximo = 5.12;
         
@@ -88,6 +93,19 @@ public class ESRealMain {
         System.out.println("\tMédia e Desvio Padrão do Tempo: Gaussiana");
         System.out.println("\t" + ResultadosExecucao.MediaTempo(resultadosGaussiana));
         System.out.println("\t" + ResultadosExecucao.DesvioPadraoTempo(resultadosGaussiana));
+        
+        resultadosG = new double[resultadosGaussiana.size()];
+        resultadosA = new double[resultadosAritmetico.size()];
+
+        for(int i=0;i<resultadosG.length;i++) {
+        	resultadosG[i] = resultadosGaussiana.get(i).getMelhorResultado();
+        	resultadosA[i] = resultadosAritmetico.get(i).getMelhorResultado();
+        }
+        
+
+        System.out.println("\n Test T para os Resultados - " + testT.tTest(resultadosG, resultadosA));
+        
+        
         
     }
 

@@ -117,7 +117,6 @@ public class ESReal {
        
         for (int i = 0; i < individuo.getCromossomos().size(); i++) {
             if (rnd.nextDouble() <= this.pMutacao) {
-
                 // Mutacao aritmetica
                 // Multiplicar rnd e inverter ou nao o sinal
                 Double valor = (Double) individuo.getCromossomos().get(i);

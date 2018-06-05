@@ -5,20 +5,20 @@
  */
 package ecmodel;
 
+import org.apache.commons.math3.stat.inference.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
 import metodo.DEReal;
 import problema.Problema;
 import problema.ProblemaRastrigin;
-import solucao.Individuo;
 import solucao.ResultadosExecucao;
 
 /**
  *
  * @author fernando
  */
-public class DERealPrincipal {
+public class appDE {
 
     /**
      * @param args the command line arguments
@@ -26,9 +26,12 @@ public class DERealPrincipal {
     public static void main(String[] args) {
         
     	long tempoInicial;
+    	TTest testT = new TTest();
     	
     	ArrayList<ResultadosExecucao> resultadosRand = new ArrayList<ResultadosExecucao>();
+    	double[] resultadosR;
     	ArrayList<ResultadosExecucao> resultadosBest = new ArrayList<ResultadosExecucao>();
+    	double[] resultadosB;
     	
         Double minimo = -5.12;
         Double maximo = 5.12;
@@ -86,6 +89,18 @@ public class DERealPrincipal {
         System.out.println("\tMédia e Desvio Padrão do Tempo: Best");
         System.out.println("\t" + ResultadosExecucao.MediaTempo(resultadosBest));
         System.out.println("\t" + ResultadosExecucao.DesvioPadraoTempo(resultadosBest));
+        
+        
+        resultadosR = new double[resultadosRand.size()];
+        resultadosB = new double[resultadosBest.size()];
+
+        for(int i=0;i<resultadosR.length;i++) {
+        	resultadosR[i] = resultadosRand.get(i).getMelhorResultado();
+        	resultadosB[i] = resultadosBest.get(i).getMelhorResultado();
+        }
+        
+        System.out.println("\n Test T para os Resultados - " + testT.tTest(resultadosR, resultadosB));
+        
         
         
     }
